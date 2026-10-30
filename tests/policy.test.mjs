@@ -33,3 +33,21 @@ test('README does not instruct unapproved deployments', () => {
   assert.match(readme, /Não criar projetos ou deployments na Vercel/);
   assert.match(readme, /URL de prévia/);
 });
+
+test('provides a keyboard skip link to the policy heading', () => {
+  assert.match(policy, /class="skip-link" href="#politica"/);
+  assert.match(policy, /<h1 id="politica" tabindex="-1">/);
+  assert.match(policy, /:focus-visible/);
+});
+
+test('uses scalable text, mobile layout and reduced-motion support', () => {
+  assert.match(policy, /font-size: clamp\(/);
+  assert.match(policy, /@media \(max-width: 640px\)/);
+  assert.match(policy, /prefers-reduced-motion: reduce/);
+  assert.match(policy, /width: min\(100% - 1\.5rem, 920px\)/);
+});
+
+test('keeps the purple identity without remote fonts, tracking scripts or raster artwork', () => {
+  assert.match(policy, /--accent: #d5b8ff/);
+  assert.doesNotMatch(policy, /<script|<img|fonts\.googleapis|analytics|pixel\./i);
+});
