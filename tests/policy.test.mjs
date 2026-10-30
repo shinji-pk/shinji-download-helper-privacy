@@ -8,7 +8,7 @@ const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
 test('privacy policy has a Portuguese document language and accessible title', () => {
   assert.match(policy, /<html lang="pt-BR">/);
   assert.match(policy, /<main class="box">/);
-  assert.match(policy, /<h1>Política de Privacidade/);
+  assert.match(policy, /<h1\b[^>]*>Política de Privacidade/);
   assert.match(policy, /<meta name="viewport"/);
 });
 
